@@ -15,7 +15,7 @@ class PostImage < ApplicationRecord
       # Rails.root.join(~) ~にルート以下のパスを指定する
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    else
+    e
       image
     end
   end
