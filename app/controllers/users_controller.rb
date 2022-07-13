@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     # アソシエーション関連を持っているモデル同士の記述方法
     # 複数形になっているのはhas_many :post_images　になっているから
     # ユーザーが投稿した投稿
-    @post_images = @user.post_images
+    @post_images = @user.post_images.page(params[:page])
   end
 
   def edit

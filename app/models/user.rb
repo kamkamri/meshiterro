@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   # has_manyモデル名（1：NのNの方のモデルなので必ず複数形）
   has_many :post_images, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   # ActiveStorageを使い画像をアップロードできるようにする
   has_one_attached :profile_image

@@ -5,7 +5,12 @@ class PostImage < ApplicationRecord
   has_one_attached :image
   # belongs_to モデル名（N：1の1の方のモデルなので必ず単数形）
   belongs_to :user
-  
+  has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+
+  validates :shop_name, presence: true
+  validates :image, presence: true
+
   def get_image
     # unless・・・条件分岐もし評価が偽であれば
     # image.attaches?　画像添付
@@ -17,6 +22,10 @@ class PostImage < ApplicationRecord
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     image
-    
   end
+
+   def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
+
 end
